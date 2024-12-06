@@ -7,7 +7,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import commonLibs.CommonDriver;
+
 public class AppTest {
+
+    @Test
+    public void verifyTitleOfThePage2() throws Exception {
+
+        CommonDriver cmnDriver = new CommonDriver("chrome");
+
+        cmnDriver.navigateToUrl("http://localhost:3000");
+
+        String title = cmnDriver.getTitle();
+
+        Assert.assertEquals(title, "Conduit");
+
+        cmnDriver.closeAllBrowser();
+
+    }
 
     @Test
     public void verifyTitleOfThePage() {
@@ -52,8 +69,9 @@ public class AppTest {
 
         String username = driver.findElement(By.xpath("//a[contains(@href , 'profile')]")).getText();
 
-
         Assert.assertEquals(username, "saurabh");
+
+        driver.quit();
 
     }
 
