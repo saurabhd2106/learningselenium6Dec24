@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class AmazonTest {
 
     @Test
-    public void searchProducts(){
+    public void searchProducts() {
         ChromeDriver driver = new ChromeDriver();
 
         driver.manage().window().maximize();
@@ -38,7 +38,6 @@ public class AmazonTest {
 
         List<WebElement> allProducts = driver.findElements(By.xpath("//div[@data-component-type=\"s-search-result\"]"));
 
-
         int numberOfProducts = allProducts.size();
 
         System.out.println("Number of products are " + numberOfProducts);
@@ -57,19 +56,16 @@ public class AmazonTest {
 
         Assert.assertTrue(nthproductDetails.toLowerCase().contains("watch"));
 
-        //Assert all product info!
+        // Assert all product info!
 
-        for(WebElement product : allProducts){
+        for (WebElement product : allProducts) {
 
             String productInfo = product.getText();
 
             Assert.assertTrue(productInfo.toLowerCase().contains("watch"));
 
-
         }
 
-
-
     }
-    
+
 }
