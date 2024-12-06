@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -56,9 +57,13 @@ public class AmazonTest {
 
         Assert.assertTrue(nthproductDetails.toLowerCase().contains("watch"));
 
+        Actions action = new Actions(driver);
+
         // Assert all product info!
 
         for (WebElement product : allProducts) {
+
+            action.moveToElement(product).build().perform();
 
             String productInfo = product.getText();
 
