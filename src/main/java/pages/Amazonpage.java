@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import commonLibs.ElementControl;
-
-public class Amazonpage {
+public class Amazonpage extends BasePage{
 
     // 1. Define (or declare) all web elements
 
@@ -26,15 +24,16 @@ public class Amazonpage {
     @FindBy(xpath = "//div[@data-component-type=\"s-search-result\"]")
     List<WebElement> allProducts;
 
-    ElementControl elementControl;
 
     // 2. Initialise the web elements
 
     public Amazonpage(WebDriver driver) {
 
+        super(driver);
+
         PageFactory.initElements(driver, this);
 
-        elementControl = new ElementControl();
+        
 
     }
 
@@ -48,6 +47,10 @@ public class Amazonpage {
 
         elementControl.click(searchButton);
 
+    }
+
+    public int getProductCount(){
+        return allProducts.size();
     }
 
     public String getFirstProductDetails() {
@@ -68,6 +71,8 @@ public class Amazonpage {
         List<String> allProductDetails = new ArrayList<>();
         
         for(WebElement product: allProducts) {
+
+            elementControl.moveToElement(product);
 
             allProductDetails.add(product.getText());
         }

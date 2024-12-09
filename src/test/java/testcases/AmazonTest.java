@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class AmazonTest extends BaseTest {
 
     @Test
-    public void searchProducts()  {
+    public void searchProducts() throws Exception {
 
         cmnDriver.navigateToUrl("https://amazon.com");
       
@@ -22,19 +22,9 @@ public class AmazonTest extends BaseTest {
 
         String category = "Electronics";
 
-        WebElement categoryDropdown = driver.findElement(By.id("searchDropdownBox"));
+        amazonpage.searchProduct(productName, category);
 
-        Select dropdown = new Select(categoryDropdown);
-
-        dropdown.selectByVisibleText(category);
-
-        driver.findElement(By.id("twotabsearchtextbox")).sendKeys(productName);
-
-        driver.findElement(By.xpath("//input[@value='Go']")).click();
-
-        List<WebElement> allProducts = driver.findElements(By.xpath("//div[@data-component-type=\"s-search-result\"]"));
-
-        int numberOfProducts = allProducts.size();
+        int numberOfProducts = amazonpage.getProductCount();
 
         System.out.println("Number of products are " + numberOfProducts);
 
@@ -42,28 +32,20 @@ public class AmazonTest extends BaseTest {
 
         // Get the first product
 
-        String firstProductDetail = allProducts.get(0).getText();
+        String firstProductDetail = amazonpage.getFirstProductDetails();
 
         Assert.assertTrue(firstProductDetail.toLowerCase().contains("apple"));
 
         // Get the 10th product
 
-        String nthproductDetails = allProducts.get(9).getText();
+        String nthproductDetails = amazonpage.getNthProduct(9);
 
         Assert.assertTrue(nthproductDetails.toLowerCase().contains("watch"));
 
-        Actions action = new Actions(driver);
+        List<String> allProductDetails = amazonpage.getAllProducts();
 
-        // Assert all product info!
-
-        for (WebElement product : allProducts) {
-
-            action.moveToElement(product).build().perform();
-
-            String productInfo = product.getText();
-
-            Assert.assertTrue(productInfo.toLowerCase().contains("watch"));
-
+        for(String productDetail : allProductDetails) {
+            Assert.assertTrue(productDetail.toLowerCase().contains("watch"));
         }
 
     }

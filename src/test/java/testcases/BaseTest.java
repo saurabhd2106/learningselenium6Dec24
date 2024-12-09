@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import commonLibs.CommonDriver;
+import pages.Amazonpage;
 import pages.Loginpage;
 
 public class BaseTest {
@@ -12,6 +13,8 @@ public class BaseTest {
     CommonDriver cmnDriver;
 
     Loginpage loginpage;
+
+    Amazonpage amazonpage;
 
     WebDriver driver;
 
@@ -25,6 +28,8 @@ public class BaseTest {
         driver = cmnDriver.getDriver();
 
         loginpage = new Loginpage(driver);
+
+        amazonpage = new Amazonpage(driver);
 
     }
 

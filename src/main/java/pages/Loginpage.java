@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import commonLibs.ElementControl;
 
-public class Loginpage {
+public class Loginpage extends BasePage {
 
     // 1. Declare all web elements using @FindBy annotation
 
@@ -30,15 +30,17 @@ public class Loginpage {
     @FindBy(xpath = "//a[contains(@href , 'profile')]")
     WebElement userProfile;
 
-    ElementControl elementControl;
+    
 
     // Logic
 
     public Loginpage(WebDriver driver) {
 
+        super(driver);
+
         PageFactory.initElements(driver, this);
 
-        elementControl = new ElementControl();
+        
     }
 
     public void navigateToLoginpage() {
