@@ -5,14 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Loginpage {
+import commonLibs.ElementControl;
 
+public class Loginpage {
 
     // 1. Declare all web elements using @FindBy annotation
 
     // 2. Initialise the element using Page Factory
 
-    // 3. Call logic using methods 
+    // 3. Call logic using methods
 
     @FindBy(linkText = "Sign in")
     WebElement signinLink;
@@ -23,38 +24,40 @@ public class Loginpage {
     @FindBy(xpath = "//input[@placeholder='Password']")
     WebElement passwordField;
 
-
     @FindBy(xpath = "//button[@type='submit']")
     WebElement signinButton;
 
     @FindBy(xpath = "//a[contains(@href , 'profile')]")
     WebElement userProfile;
 
-    //Logic
+    ElementControl elementControl;
+
+    // Logic
 
     public Loginpage(WebDriver driver) {
-        
+
         PageFactory.initElements(driver, this);
+
+        elementControl = new ElementControl();
     }
 
-    public void navigateToLoginpage(){
+    public void navigateToLoginpage() {
 
-        signinLink.click();
+        elementControl.click(signinLink);
 
     }
 
     public void loginToApplication(String useremail, String password) {
 
-        emailField.sendKeys(useremail);
+        elementControl.writetext(emailField, useremail);
 
-        passwordField.sendKeys(password);
+        elementControl.writetext(passwordField, password);
 
-        signinButton.click();
+        elementControl.click(signinButton);
 
     }
-    
 
-    public String getUserprofilename(){
-        return userProfile.getText();
+    public String getUserprofilename() {
+        return elementControl.getElementText(userProfile);
     }
 }
