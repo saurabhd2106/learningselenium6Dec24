@@ -2,6 +2,8 @@ package testcases;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import commonLibs.CommonDriver;
@@ -9,16 +11,38 @@ import pages.Loginpage;
 
 public class ConduitTest {
 
-    @Test
-    public void verifyLoginToApplication() throws Exception {
+    CommonDriver cmnDriver;
 
-        CommonDriver cmnDriver = new CommonDriver("chrome");
+    Loginpage loginpage;
+
+    @BeforeMethod
+    public void setup() throws Exception{
+
+
+        cmnDriver = new CommonDriver("chrome");
 
         cmnDriver.navigateToUrl("http://localhost:3000");
 
         WebDriver driver = cmnDriver.getDriver();
 
-        Loginpage loginpage = new Loginpage(driver);
+        loginpage = new Loginpage(driver);
+
+    }
+
+
+    @AfterMethod
+    public void cleanup(){
+
+        cmnDriver.closeAllBrowser();
+
+
+    }
+
+    @Test
+    public void verifyLoginToApplication() throws Exception {
+
+        
+       
 
         loginpage.navigateToLoginpage();
 
@@ -28,20 +52,13 @@ public class ConduitTest {
 
         Assert.assertEquals(username, "saurabh");
 
-        cmnDriver.closeAllBrowser();
-
+       
     }
 
     @Test
     public void verifyAddArticle() throws Exception{
 
-        CommonDriver cmnDriver = new CommonDriver("chrome");
-
-        cmnDriver.navigateToUrl("http://localhost:3000");
-
-        WebDriver driver = cmnDriver.getDriver();
-
-        Loginpage loginpage = new Loginpage(driver);
+      
 
         loginpage.navigateToLoginpage();
 
@@ -51,7 +68,7 @@ public class ConduitTest {
         // Add the logic to add article
 
 
-        cmnDriver.closeAllBrowser();
+     
 
     }
 
