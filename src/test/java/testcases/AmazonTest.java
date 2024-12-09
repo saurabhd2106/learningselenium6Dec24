@@ -8,7 +8,7 @@ public class AmazonTest extends BaseTest {
     @Test
     public void searchProducts() throws Exception {
 
-        cmnDriver.navigateToUrl("https://amazon.com");
+        cmnDriver.navigateToUrl(configProperties.getProperty("currentWorkingDirectory"));
       
         String productName = "Apple Watch";
 
