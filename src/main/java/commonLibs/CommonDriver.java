@@ -37,6 +37,12 @@ public class CommonDriver {
 
     }
 
+    public WebDriver getDriver(){
+
+        return driver;
+
+    }
+
     public void navigateToUrl(String url) {
 
         driver.get(url);
