@@ -13,14 +13,16 @@ public class BaseTest {
 
     Loginpage loginpage;
 
+    WebDriver driver;
+
     @BeforeMethod
     public void setup() throws Exception {
 
         cmnDriver = new CommonDriver("chrome");
 
-        cmnDriver.navigateToUrl("http://localhost:3000");
+       
 
-        WebDriver driver = cmnDriver.getDriver();
+        driver = cmnDriver.getDriver();
 
         loginpage = new Loginpage(driver);
 

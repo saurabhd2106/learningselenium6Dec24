@@ -11,18 +11,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AmazonTest {
+public class AmazonTest extends BaseTest {
 
     @Test
-    public void searchProducts() {
-        ChromeDriver driver = new ChromeDriver();
+    public void searchProducts()  {
 
-        driver.manage().window().maximize();
-
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-
-        driver.get("https://amazon.com");
-
+        cmnDriver.navigateToUrl("https://amazon.com");
+      
         String productName = "Apple Watch";
 
         String category = "Electronics";

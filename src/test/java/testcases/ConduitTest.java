@@ -11,6 +11,8 @@ public class ConduitTest extends BaseTest{
     @Test
     public void verifyLoginToApplication() throws Exception {
 
+        cmnDriver.navigateToUrl("http://localhost:3000");
+
         loginpage.navigateToLoginpage();
 
         loginpage.loginToApplication("test@abc.com", "testpassword");
