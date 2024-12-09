@@ -8,7 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 public class Loginpage {
 
 
-    //WebElements
+    // 1. Declare all web elements using @FindBy annotation
+
+    // 2. Initialise the element using Page Factory
+
+    // 3. Call logic using methods 
 
     @FindBy(linkText = "Sign in")
     WebElement signinLink;
